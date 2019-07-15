@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-import Form from './components/Form';
+import TeamForm from './components/TeamForm';
 import Team from './components/Team';
 
+import 'semantic-ui-css/semantic.min.css'
 import './App.css';
 
 function App() {
@@ -50,7 +51,7 @@ function App() {
 
   return (
     <div className="App">
-      <Form addMember={addMember} activeMember={activeMember} editMember={editMember}/>
+      <TeamForm addMember={addMember} activeMember={activeMember} editMember={editMember}/>
       {teamNames.map(item => <Team key={item} teamName={item} team={team.filter(team => team.team === item)} setActiveMember={memberToEdit} deleteMember={deleteMember} />)}
 
       {/*team.map((item, index) => <Member key={item.id} member={item} setActiveMember={memberToEdit} deleteMember={deleteMember}/>) */}

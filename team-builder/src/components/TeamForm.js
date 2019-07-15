@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Form, Button } from 'semantic-ui-react';
 
-const Form = (props) => {
+const TeamForm = (props) => {
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -41,27 +42,27 @@ const Form = (props) => {
 
   return (
     <div>
-      <form onSubmit={submitHandler}>
-        <label>
-          Name: 
+      <Form className='team-form' onSubmit={submitHandler}>
+        <Form.Field>
+          <label>Name: </label>
           <input type='text' name='name' placeholder='Enter name' value={formState.name} onChange={inputHandler} required />
-        </label>
-        <label>
-          Email: 
+        </Form.Field>
+        <Form.Field>
+          <label>Email: </label>
           <input type='email' name='email' placeholder='Enter email' value={formState.email} onChange={inputHandler} required />
-        </label>
-        <label>
-          Role: 
+        </Form.Field>
+        <Form.Field>
+          <label>Role: </label>
           <input type='text' name='role' placeholder='Enter role' value={formState.role} onChange={inputHandler} required />
-        </label>
-        <label>
-          Team: 
+        </Form.Field>
+        <Form.Field>
+          <label>Team: </label>
           <input type='text' name='team' placeholder='Enter team' value={formState.team} onChange={inputHandler} required />
-        </label>
-        <button>Submit</button>
-      </form>
+        </Form.Field>
+        <Button>Submit</Button>
+      </Form>
     </div>
   )
 }
 
-export default Form;
+export default TeamForm;

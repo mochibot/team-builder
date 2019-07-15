@@ -1,13 +1,18 @@
 import React from 'react';
+import { Item, Header } from 'semantic-ui-react'
 
 import Member from './Member';
 
 const Team = (props) => {
   return (
-    <div>
-      <div>{props.teamName}</div>
-      {props.team.map(item => <Member key={item.id} member={item} setActiveMember={props.memberToEdit} deleteMember={props.deleteMember} />)}
-    </div>
+    <Item.Group divided relaxed>
+      <Item style={{display: 'flex', justifyConenter: 'space-between', width: '80%', margin: '0 auto'}}>
+        <Item.Header style={{fontSize: '28px', width: '10%', textAlign: 'left'}}>{props.teamName}</Item.Header>
+        <Item.Content >  
+          {props.team.map(item => <Member key={item.id} member={item} setActiveMember={props.setActiveMember} deleteMember={props.deleteMember} />)}
+        </Item.Content>
+      </Item>
+    </Item.Group>
   )
 }
 
