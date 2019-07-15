@@ -7,7 +7,7 @@ const Member = (props) => {
       <div>Email: {props.member.email}</div>
       <div>Role: {props.member.role}</div>
       <button onClick={() => props.setActiveMember(props.member)}>Edit</button>
-      <button onClick={() => props.deleteTeam(props.member)}>Delete</button>
+      <button onClick={() => props.deleteMember(props.member)}>Delete</button>
     </div>
   )
 }

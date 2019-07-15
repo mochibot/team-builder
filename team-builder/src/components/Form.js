@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 const Form = (props) => {
   const [formState, setFormState] = useState({
-    id: null,
     name: '',
     email: '',
-    role: ''
+    role: '',
+    team: ''
   })
 
   useEffect(() => {
@@ -22,20 +22,20 @@ const Form = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    setFormState({
-      ...formState,
-      id: Date.now()
-    })
     if (props.activeMember) {
-      props.editTeam(formState)
+      props.editMember(formState)
     } else{
-      props.addTeam(formState)
+      let newMember = {
+        ...formState,
+        id: Date.now()
+      }
+      props.addMember(newMember)
     }
     setFormState({
-      id: null,
       name: '',
       email: '',
-      role: ''
+      role: '',
+      team: ''
     })
   }
 
@@ -43,16 +43,20 @@ const Form = (props) => {
     <div>
       <form onSubmit={submitHandler}>
         <label>
-          Name:
+          Name: 
           <input type='text' name='name' placeholder='Enter name' value={formState.name} onChange={inputHandler} required />
         </label>
         <label>
-          Email:
+          Email: 
           <input type='email' name='email' placeholder='Enter email' value={formState.email} onChange={inputHandler} required />
         </label>
         <label>
-          Role:
-          <input type='text' name='role' placeholder='Enter role' value={formState.role} onChange={inputHandler} required/>
+          Role: 
+          <input type='text' name='role' placeholder='Enter role' value={formState.role} onChange={inputHandler} required />
+        </label>
+        <label>
+          Team: 
+          <input type='text' name='team' placeholder='Enter team' value={formState.team} onChange={inputHandler} required />
         </label>
         <button>Submit</button>
       </form>

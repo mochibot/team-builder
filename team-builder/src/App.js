@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Form from './components/Form';
-import Member from './components/Member';
+import Team from './components/Team';
 
 import './App.css';
 
 function App() {
-  const [team, setTeam] = useState([]);
+  const initialTeam = JSON.parse(localStorage.getItem('team')) || []
+
+  const [team, setTeam] = useState(initialTeam)
   const [activeMember, setActiveMember] = useState('')
 
-  const addTeam = (member) => {
+  useEffect(() => {
+    localStorage.setItem('team', JSON.stringify(team))
+  }, [team])
+
+  const addMember = (member) => {
     setTeam([...team, member])
   }
 
@@ -17,7 +23,7 @@ function App() {
     setActiveMember(member)
   } 
 
-  const editTeam = (member) => {
+  const editMember = (member) => {
     setTeam(team.map(item => {
       if (item.id === activeMember.id) {
         return member;
@@ -28,14 +34,26 @@ function App() {
     setActiveMember('')
   }
 
-  const deleteTeam = (member) => {
+  const deleteMember= (member) => {
     setTeam(team.filter(item => item.id !== member.id))
   }
 
+  const teamNames = [];
+
+  team.forEach(item => {
+    if (!teamNames.includes(item.team)) {
+      teamNames.push(item.team)
+    }
+  })
+
+  console.log(teamNames)
+
   return (
     <div className="App">
-      <Form addTeam={addTeam} activeMember={activeMember} editTeam={editTeam}/>
-      {team.map((item, index) => <Member key={index} member={item} setActiveMember={memberToEdit} deleteTeam={deleteTeam}/>)}
+      <Form addMember={addMember} activeMember={activeMember} editMember={editMember}/>
+      {teamNames.map(item => <Team key={item} teamName={item} team={team.filter(team => team.team === item)} setActiveMember={memberToEdit} deleteMember={deleteMember} />)}
+
+      {/*team.map((item, index) => <Member key={item.id} member={item} setActiveMember={memberToEdit} deleteMember={deleteMember}/>) */}
     </div>
   );
 }
