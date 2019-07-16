@@ -9,7 +9,7 @@ const Member = (props) => {
         <Card.Description style={{fontSize: '20px', lineHeight: 2}}>
           <Icon name='user circle' size='huge' style={{margin: '0 auto'}}/>
           <div style={{textAlign: 'left'}}><Icon name='mail'/>{props.member.email}</div>
-          <div style={{textAlign: 'left'}}><Icon name='briefcase'/>Role: {props.member.role}</div>
+          <div style={{textAlign: 'left'}}><Icon name='briefcase'/>{props.member.role}</div>
         </Card.Description>
       </Card.Content>
       <Card.Content>

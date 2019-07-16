@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Sidebar } from 'semantic-ui-react'
 
 import TeamForm from './components/TeamForm';
 import Team from './components/Team';
@@ -39,22 +40,17 @@ function App() {
     setTeam(team.filter(item => item.id !== member.id))
   }
 
-  const teamNames = [];
-
-  team.forEach(item => {
-    if (!teamNames.includes(item.team)) {
-      teamNames.push(item.team)
-    }
-  })
-
+  const teamNames = [...new Set(team.map(item => item.team))];
   console.log(teamNames)
 
   return (
     <div className="App">
-      <TeamForm addMember={addMember} activeMember={activeMember} editMember={editMember}/>
-      {teamNames.map(item => <Team key={item} teamName={item} team={team.filter(team => team.team === item)} setActiveMember={memberToEdit} deleteMember={deleteMember} />)}
-
-      {/*team.map((item, index) => <Member key={item.id} member={item} setActiveMember={memberToEdit} deleteMember={deleteMember}/>) */}
+      <Sidebar visible style={{width: '400px', background: 'rgb(53, 53, 53)'}}>
+        <TeamForm addMember={addMember} activeMember={activeMember} editMember={editMember}/>
+      </Sidebar>
+      <div className='App-content'>
+        {teamNames.map(item => <Team key={item} teamName={item} team={team.filter(team => team.team === item)} setActiveMember={memberToEdit} deleteMember={deleteMember} />)}
+      </div>
     </div>
   );
 }

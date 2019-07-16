@@ -2,10 +2,26 @@
   text-align: center;
 }
 
+.side-bar {
+  width: 450px;
+  background: rgb(53, 53, 53);
+}
+
 .team-form {
-  width: 50%;
-  margin: 10px auto;
+  width: 85%;
+  margin: 20px auto;
   border: 1px solid lightgray;
   border-radius: 10px;
-  padding: 10px;
+  padding: 15px 10px;
+}
+
+
+.ui .form .field > label  {
+  font-size: 18px;
+  text-align: left;
+}
+
+.App-content {
+  margin-left: 450px;
+  padding: 15px;
 }

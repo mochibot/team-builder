@@ -42,7 +42,7 @@ const TeamForm = (props) => {
 
   return (
     <div>
-      <Form className='team-form' onSubmit={submitHandler}>
+      <Form className='team-form' onSubmit={submitHandler} inverted>
         <Form.Field>
           <label>Name: </label>
           <input type='text' name='name' placeholder='Enter name' value={formState.name} onChange={inputHandler} required />
